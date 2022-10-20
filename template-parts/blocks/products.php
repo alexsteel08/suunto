@@ -90,11 +90,7 @@ if( $featured_posts ): ?>
 <!--                                        <a class="btn" href="--><?php //echo esc_url( $permalink ); ?><!--">--><?php //_e('More details','suunto'); ?><!--</a>-->
 
 
-                                        <?php
-
-
-                                        do_action( 'woocommerce_after_shop_loop_item' );
-                                        ?>
+                                        <?php do_action( 'woocommerce_after_shop_loop_item' ); ?>
                                     </div>
                                 </div>
                             </div>

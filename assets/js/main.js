@@ -466,3 +466,15 @@ $(document).ready(function(){
 
 
 });
+
+
+
+jQuery(document).ready(function($){
+
+    var monkeyList = new List('information', {
+        valueNames: ['information__block'],
+        page: 6,
+        pagination: true
+    });
+});
+

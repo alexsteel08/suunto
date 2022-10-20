@@ -592,3 +592,21 @@ iframe#youtube {
     background: #000000;
 }
 /**/
+
+
+/*instruction*/
+
+.pagination {
+    list-style-type: none !important;
+}
+.pagination li:not(:last-child) {
+    margin-right: 10px;
+}
+.pagination li.active {
+
+    background: #000;
+}
+.pagination > li.active > a {
+    color: #fff;
+}
+/**/

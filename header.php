@@ -42,45 +42,75 @@
                         ]);
 
                         ?>
-                        <div class="d-block d-xl-none">
-                            <div class="header__phone-list">
-                                <a href="">+38(095) 536-76-40</a>
-                                <a href="">+38(044) 425-11-65</a>
+
+                        <?php if( have_rows('header_phones', 'option') ): ?>
+                            <div class="d-block d-xl-none">
+                                <div class="header__phone-list">
+                                    <?php while( have_rows('header_phones', 'option') ): the_row();  $header_phone = get_sub_field('phone_number'); ?>
+                                        <a href="tel:<?php if ($header_phone) { echo preg_replace('/[^0-9]/', '', $header_phone); } ?>">
+                                            <?php echo $header_phone; ?>
+                                        </a>
+                                    <?php endwhile; ?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="d-block d-xl-none">
-                            <div class="header__social">
-                                <a href=""><img class="svg-image" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/icon/fb-h.svg" alt=""></a>
-                                <a href=""><img class="svg-image" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/icon/instagram-h.svg" alt=""></a>
+                        <?php endif; ?>
+
+                        <?php if( have_rows('social_links', 'option') ): ?>
+                            <div class="d-block d-xl-none">
+                                <div class="header__social">
+                                    <?php while( have_rows('social_links', 'option') ): the_row();  $logo = get_sub_field('logo'); ?>
+                                        <a href="<?php the_sub_field('link'); ?>"><img class="svg-image" src="<?php echo $logo; ?>" alt=""></a>
+                                    <?php endwhile; ?>
+                                </div>
                             </div>
-                        </div>
+                        <?php endif; ?>
                     </div>
                 </nav>
-                <div class="d-none d-xl-block">
-                    <div class="header__phone-list">
-                        <a href="">+38(095) 536-76-40</a>
-                        <a href="">+38(044) 425-11-65</a>
+                <?php if( have_rows('header_phones', 'option') ): ?>
+                    <div class="d-none d-xl-block">
+                        <div class="header__phone-list">
+                            <?php while( have_rows('header_phones', 'option') ): the_row();  $header_phone = get_sub_field('phone_number'); ?>
+                                <a href="tel:<?php if ($header_phone) { echo preg_replace('/[^0-9]/', '', $header_phone); } ?>">
+                                    <?php echo $header_phone; ?>
+                                </a>
+                            <?php endwhile; ?>
+                        </div>
                     </div>
-                </div>
-                <div class="d-none d-xl-block">
-                    <div class="header__social">
-                        <a href=""><img class="svg-image" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/icon/fb-h.svg" alt=""></a>
-                        <a href=""><img class="svg-image" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/icon/instagram-h.svg" alt=""></a>
+                <?php endif; ?>
+                <?php if( have_rows('social_links', 'option') ): ?>
+                    <div class="d-none d-xl-block">
+                        <div class="header__social">
+                            <?php while( have_rows('social_links', 'option') ): the_row();  $logo = get_sub_field('logo'); ?>
+                                <a href="<?php the_sub_field('link'); ?>"><img class="svg-image" src="<?php echo $logo; ?>" alt=""></a>
+                            <?php endwhile; ?>
+                        </div>
                     </div>
-                </div>
+                <?php endif; ?>
+
+
                 <div class="header__search">
                     <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/icon/search-icon-h.svg" alt="">
                 </div>
                 <?php dynamic_sidebar( 'compare' ); ?>
-                <a href="" class="header__login">
-                    <span class="name">Вход</span>
-                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/icon/account-circle.svg" alt="">
-                </a>
-                <a href="" class="header__cart">
-                    <span class="name">Корзина</span>
+
+                <?php if ( is_user_logged_in() ) { ?>
+                    <a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" class="header__login" title="<?php _e('My Account','suunto'); ?>">
+                        <span><?php _e('My Account','suunto'); ?></span>
+                        <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/icon/account-circle.svg" alt="">
+                    </a>
+                <?php }
+                else { ?>
+                    <a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" class="header__login" title="<?php _e('Login / Register','suunto'); ?>">
+                        <span><?php _e('Login','suunto'); ?></span>
+                        <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/icon/account-circle.svg" alt="">
+                    </a>
+                <?php } ?>
+                <a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="header__cart">
+                    <span class="name"><?php _e('Card','suunto'); ?></span>
                     <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/icon/cart.svg" alt="">
-                    <span class="quantity">2</span>
+                    <span class="quantity"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
                 </a>
+
                 <div class="header__lang">
                     <span>RU</span>
                     <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/icon/lang-arrow.svg" alt="">
@@ -97,12 +127,11 @@
     </div>
     <div class="search-popup">
         <div class="container">
-            <form action="">
-                <div class="search-popup__block">
-                    <input type="search" name="s" id="" placeholder="Поиск товаров">
-                    <button><img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/icon/search-icon-h.svg" alt=""></button>
-                </div>
-            </form>
+
+
+                    <?php dynamic_sidebar( 'search' ); ?>
+
+
         </div>
     </div>
 </header>

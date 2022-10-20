@@ -121,25 +121,33 @@ remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_singl
 //add parrent category before title and clor tags
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
 function woocommerce_add_custom_text_before_product_title(){
-    echo '<div class="hero-product__block"><ul class="product__tags">';
-    $terms = get_terms( 'product_tag' );
-    $term_array = array();
-    if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
-        foreach ( $terms as $term ) {
-            $term_link = get_term_link( $term );
-            echo '<li>';
-            echo '<a href="';
-            echo $term_link;
-            echo '"';
-            echo ' style="background-color:';
-            echo get_field('tag_color', $term);
-            echo '">';
-            echo $term->name;
-            echo '</a></li>';
+    echo '<div class="hero-product__block">'; ?>
+    <?php
+    $terms = get_field('terms_select');
 
-        }
-    }
-    echo '</ul></div>';
+    if( $terms ): ?>
+        <ul class="product__tags">
+            <?php foreach( $terms as $term ): $term_link = get_term_link($term); ?>
+                <li>
+                    <?php
+                    echo '<a href="';
+                    echo $term_link;
+                    echo '"';
+                    echo ' style="background-color:';
+                    echo get_field('tag_color', $term);
+                    echo '">';
+                    echo $term->name;
+                    echo '</a></li>';
+
+                    ?>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
+
+
+    <?php
+    echo '</div>';
     $cat = get_the_terms( $product->ID, 'product_cat' );
     foreach ($cat as $categoria) {
         if($categoria->parent == 0){
@@ -176,7 +184,10 @@ add_filter( 'woocommerce_taxonomy_args_product_tag', 'my_woocommerce_make_tags_h
 //Hide SKU, Cats, Tags @ Single Product Page - WooCommerce
 
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40, 0 );
-
+/**
+ * Remove related products output
+ */
+remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
 //after short description
 add_action( 'woocommerce_single_product_summary', 'after_short_description', 25 );
 function after_short_description(){ ?>
@@ -265,6 +276,8 @@ function product_custom_content() { ?>
     <?php get_template_part( 'template-parts/single-product/features' );?>
     <?php get_template_part( 'template-parts/single-product/characteristics' );?>
     <?php get_template_part( 'template-parts/single-product/specification' );?>
+    <?php get_template_part( 'template-parts/single-product/compatible' );?>
+    <?php get_template_part( 'template-parts/single-product/videos' );?>
 
 
 <?php
@@ -273,3 +286,6 @@ function product_custom_content() { ?>
     comments_template();
 
 }
+
+
+

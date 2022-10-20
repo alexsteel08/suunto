@@ -284,3 +284,185 @@ jQuery(document).ready(function($){
 
 });
 
+function videoId(button) {
+    var $videoUrl = button.attr("data-video");
+    if ($videoUrl !== undefined) {
+        var $videoUrl = $videoUrl.toString();
+        var srcVideo;
+
+        if ($videoUrl.indexOf("youtube") !== -1) {
+            var et = $videoUrl.lastIndexOf("&");
+            if (et !== -1) {
+                $videoUrl = $videoUrl.substring(0, et);
+            }
+            var embed = $videoUrl.indexOf("embed");
+            if (embed !== -1) {
+                $videoUrl =
+                    "https://www.youtube.com/watch?v=" +
+                    $videoUrl.substring(embed + 6, embed + 17);
+            }
+
+            srcVideo =
+                "https://www.youtube.com/embed/" +
+                $videoUrl.substring($videoUrl.length - 11, $videoUrl.length) +
+                "?autoplay=1&mute=1&loop=1&playlist=" +
+                $videoUrl.substring($videoUrl.length - 11, $videoUrl.length) +
+                "";
+        } else if ($videoUrl.indexOf("youtu") !== -1) {
+            var et = $videoUrl.lastIndexOf("&");
+            if (et !== -1) {
+                $videoUrl = $videoUrl.substring(0, et);
+            }
+            var embed = $videoUrl.indexOf("embed");
+            if (embed !== -1) {
+                $videoUrl =
+                    "https://youtu.be/" + $videoUrl.substring(embed + 6, embed + 17);
+            }
+
+            srcVideo =
+                "https://www.youtube.com/embed/" +
+                $videoUrl.substring($videoUrl.length - 11, $videoUrl.length) +
+                "?autoplay=1&mute=1&loop=1&playlist=" +
+                $videoUrl.substring($videoUrl.length - 11, $videoUrl.length) +
+                "";
+        } else if ($videoUrl.indexOf("vimeo") !== -1) {
+            srcVideo =
+                "https://player.vimeo.com/video/" +
+                $videoUrl
+                    .substring($videoUrl.indexOf(".com") + 5, $videoUrl.length)
+                    .replace("/", "") +
+                "?autoplay=1";
+        } else if ($videoUrl.indexOf("mp4") !== -1) {
+            return (
+                '<video loop playsinline autoplay><source src="' +
+                $videoUrl +
+                '" type="video/mp4"></video>'
+            );
+        } else if ($videoUrl.indexOf("m4v") !== -1) {
+            return (
+                '<video loop playsinline autoplay><source src="' +
+                $videoUrl +
+                '" type="video/mp4"></video>'
+            );
+        } else {
+            alert(
+                "The video assigned is not from Youtube, Vimeo or MP4, remember to enter the correct complete video link .\n - Youtube: https://www.youtube.com/watch?v=43ngkc2Ejgw\n - Vimeo: https://vimeo.com/111939668\n - MP4 https://server.com/file.mp4"
+            );
+            return false;
+        }
+        return (
+            '<iframe src="' +
+            srcVideo +
+            '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+        );
+    } else {
+        alert("No video assigned.");
+        return false;
+    }
+}
+
+document
+    .querySelectorAll(".lets-play")
+    .forEach((d) => d.addEventListener("click", playVideos));
+
+function playVideos(e) {
+    e.preventDefault();
+    var $theVideo = videoId($(this));
+
+    var appendVideo = document.createElement("div");
+
+    if ($theVideo) {
+        appendVideo.innerHTML +=
+            '<div class="active video-modal-wrapp" id="video-wrap"><span onclick="lvideoClose();" class="video-overlay"></span><div class="video-container">' +
+            $theVideo +
+            '</div><button onclick="lvideoClose();" class="close-video">x</button></div>';
+
+        document.body.appendChild(appendVideo);
+    }
+}
+
+const lvideoClose = () => {
+    const boxes = document.querySelectorAll(".video-modal-wrapp, .video-overlay");
+
+    boxes.forEach((box) => {
+        box.remove();
+    });
+};
+
+
+
+
+//
+
+
+$(document).ready(function(){
+
+
+    /* Toggle Video Modal
+  -----------------------------------------*/
+    function toggle_video_modal() {
+
+        // Click on video thumbnail or link
+        $(".js-trigger-video-modal").on("click", function(e){
+
+            // prevent default behavior for a-tags, button tags, etc.
+            e.preventDefault();
+
+            // Grab the video ID from the element clicked
+            var id = $(this).attr('data-youtube-id');
+
+            // Autoplay when the modal appears
+            // Note: this is intetnionally disabled on most mobile devices
+            // If critical on mobile, then some alternate method is needed
+            var autoplay = '?autoplay=1';
+
+            // Don't show the 'Related Videos' view when the video ends
+            var related_no = '&rel=0';
+
+            // String the ID and param variables together
+            var src = '//www.youtube.com/embed/'+id+autoplay+related_no;
+
+            // Pass the YouTube video ID into the iframe template...
+            // Set the source on the iframe to match the video ID
+            $("#youtube").attr('src', src);
+
+            // Add class to the body to visually reveal the modal
+            $("body").addClass("show-video-modal noscroll");
+
+        });
+
+        // Close and Reset the Video Modal
+        function close_video_modal() {
+
+            event.preventDefault();
+
+            // re-hide the video modal
+            $("body").removeClass("show-video-modal noscroll");
+
+            // reset the source attribute for the iframe template, kills the video
+            $("#youtube").attr('src', '');
+
+        }
+        // if the 'close' button/element, or the overlay are clicked
+        $('body').on('click', '.close-video-modal, .video-modal .overlay', function(event) {
+
+            // call the close and reset function
+            close_video_modal();
+
+        });
+        // if the ESC key is tapped
+        $('body').keyup(function(e) {
+            // ESC key maps to keycode `27`
+            if (e.keyCode == 27) {
+
+                // call the close and reset function
+                close_video_modal();
+
+            }
+        });
+    }
+    toggle_video_modal();
+
+
+
+});

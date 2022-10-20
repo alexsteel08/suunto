@@ -16,11 +16,40 @@ This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 */
 
+
+/*header*/
+.header__cart .quantity {
+    background: #f03241;
+    font-weight: 700;
+    font-size: 9px;
+    line-height: 13px;
+    color: #fff;
+    width: 15px;
+    height: 15px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: absolute;
+    border-radius: 50%;
+    right: -8px;
+    top: 0;
+    z-index: 9;
+}
+
+
+/**/
+
 .single_variation_wrap {
     display: flex;
     align-items: center;
 }
-.product__tags {
+.single-product .product__tags {
     position: relative;
     display: flex;
 }
@@ -264,3 +293,302 @@ label.wcvaswatchlabel {
 .woocommerce table.shop_attributes tr:nth-child(even) td, .woocommerce table.shop_attributes tr:nth-child(even) th {
     background: white;
 }
+
+.comment_container .avatar {
+    display: none;
+}
+.woocommerce #reviews #comments ol.commentlist li .comment-text {
+    margin: 0;
+    border: none;
+    padding: 1em 0em 0;
+}
+.commentlist {
+    padding-inline-start: 0px;
+}
+.woocommerce #reviews #comments ol.commentlist li .comment-text p.meta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+.commentlist .description {
+    padding: 0px 0 0px;
+}
+.woocommerce #comment-2 .star-rating {
+    position: absolute;
+}
+#commentform > div > label,
+#comment-2 > div > p > time,
+.woocommerce-review__published-date {
+    font-family: Jost,sans-serif;
+    box-sizing: border-box;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 160%;
+    color: #888;
+}
+#reply-title,
+.woocommerce-review__author {
+    font-family: Jost,sans-serif;
+    box-sizing: border-box;
+    margin-top: 0;
+    color: #000;
+    font-weight: 600;
+    line-height: 160%;
+    font-size: 18px;
+    margin-bottom: 1px;
+}
+
+.woocommerce #respond input#submit {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    --swiper-theme-color: #007aff;
+    text-align: left;
+    font-family: Jost,sans-serif;
+    box-sizing: border-box;
+    transition: .2s linear;
+    text-decoration: none;
+    height: 60px;
+    padding: 10px 50px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 23px;
+    color: #fff;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    background: #f03241;
+}
+.flaticon-right-arrow:before {
+    content: '' !important;
+    position: absolute;
+    right: 10px;
+    background-repeat: no-repeat;
+    width: 15px;
+    height: 26px;
+    background-size: contain;
+    background-image: url(/wp-content/themes/suunto/assets/images/icon/s-next.svg);
+}
+.flaticon-back:before {
+    content: '' !important;
+    position: absolute;
+    left: 10px;
+    background-repeat: no-repeat;
+    width: 15px;
+    height: 26px;
+    background-size: contain;
+    background-image: url(/wp-content/themes/suunto/assets/images/icon/s-next.svg);
+    transform: rotate(180deg);
+}
+.wpgs-nav .slick-current {
+    border-color: none !important;
+}
+/*video*/
+
+
+/* Video Modal
+-----------------------------------------*/
+.video-modal,
+.video-modal .overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 3000;
+}
+.video-modal {
+    overflow: hidden;
+    position: fixed;
+    opacity: 0.0;
+
+    -webkit-transform: translate(500%,0%);
+    transform: translate(500%,0%);
+
+    -webkit-transition: -webkit-transform 0s linear 0s;
+    transition: transform 0s linear 0s;
+
+
+    /* using flexbox for vertical centering */
+
+    /* Flexbox display */
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+
+    /* Vertical alignment */
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+.video-modal .overlay {
+    z-index: 0;
+    background: rgb(13 13 13 / 82%); /* overlay color */
+
+    opacity: 0.0;
+
+    -webkit-transition: opacity 0.2s ease-out 0.05s;
+    transition: opacity 0.2s ease-out 0.05s;
+}
+
+
+.video-modal-content {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    z-index: 1;
+
+    margin: 0 auto;
+
+    overflow-y: visible;
+
+    background: #000;
+
+    width: calc(100% - 12em);
+    height: 0;
+    padding-top: calc((100% - 12em) * 0.5625); /* 16:9 calc */
+}
+
+/* Scaling to fit within the current Viewport size:
+   When viewport aspect ratio is greater than 16:9
+   work off the height instead of the width for calc */
+@media (min-aspect-ratio: 16/9) {
+    .video-modal-content {
+        width: 0;
+        height: calc(100vh - 10em);
+        padding-top: 0;
+        padding-left: calc((100vh - 10em) * 1.7778); /* 16:9 calc */
+    }
+}
+
+/* Mobile Layout Tweaks - side margins reduced */
+@media (max-width: 640px) {
+    .video-modal-content {
+        width: calc(100% - 1em);
+        padding-top: calc((100% - 1em) * 0.5625); /* 16:9 calc */
+    }
+}
+
+/* modal close button */
+.close-video-modal {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: -40px;
+
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* set the iframe element to stretch to fit its parent element */
+iframe#youtube {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+
+    background: #000;
+    box-shadow: 0px 2px 16px rgba(0,0,0,0.5);
+}
+
+/* show the modal:
+   add class to the body to reveal */
+.show-video-modal .video-modal {
+    opacity: 1.0;
+
+    transform: translate(0%,0%);
+    -webkit-transform: translate(0%,0%);
+}
+.show-video-modal .video-modal .overlay {
+    opacity: 1.0;
+}
+.show-video-modal .video-modal-content {
+    transform: translate(0%,0%);
+    -webkit-transform: translate(0%,0%);
+}
+/**/
+
+
+
+/*price*/
+.our-products .product__price-inner .product__price del > span > bdi {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    color: #888;
+    text-align: center;
+    text-decoration: line-through;
+}
+.our-products .product__price-inner .product__price ins > span > bdi {
+    color: #f03241;
+}
+.our-products .product__price-inner .product__price del,
+.our-products .product__price-inner .product__price ins {
+    text-decoration: none;
+}
+.our-products .product__price {
+    display: flex;
+    flex-direction: column;
+}
+/*.product__block .add_to_cart_button {*/
+/*    display: none;*/
+/*}*/
+.product__block .compare {
+    position: absolute;
+    top: 0;
+    right: 35px;
+    font-size: 0px;
+}
+.product__block .compare:before {
+    content: '';
+    position: absolute;
+    background-image: url(/wp-content/themes/suunto/assets/images/icon/compare-icon2.svg);
+    width: 23px;
+    height: 23px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: 99;
+    top: 15px;
+    right: -19px;
+}
+.product__block .compare:hover:before {
+    transform: scale(1.05);
+}
+.product__block .compare:after {
+    content: '';
+    width: 55px;
+    height: 55px;
+    background: #f7f7f7;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-radius: 50%;
+    position: absolute;
+    right: -35px;
+    top: 0;
+    border: 0;
+}
+.product__block .compare.added:after {
+    background: #000000;
+}
+/**/

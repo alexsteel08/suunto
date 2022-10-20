@@ -13,6 +13,14 @@
             <?php get_template_part( 'template-parts/blocks/text' );?>
         <?php endif; ?>
 
+        <?php if( get_row_layout() == 'products' ): ?>
+            <?php get_template_part( 'template-parts/blocks/products' );?>
+        <?php endif; ?>
+
+        <?php if( get_row_layout() == 'news' ): ?>
+            <?php get_template_part( 'template-parts/blocks/news' );?>
+        <?php endif; ?>
+
 
 
 

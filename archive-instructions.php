@@ -9,88 +9,97 @@ get_header(); ?>
 
 
     <main class="main">
+        <section class="instructions">
+            <div class="container">
+                <div class="instructions__heading">
+                    <h1><?php _e('Instructions, updates, software','suunto'); ?></h1>
+                </div>
+                <div class="instructions__tabs tabs">
+                    <ul class="tabs-nav">
+                        <li><a href="#tab-1"><?php _e('Watches','suunto'); ?></a></li>
+                        <li><a href="#tab-2"><?php _e('Compass','suunto'); ?></a></li>
+                        <li><a href="#tab-3"><?php _e('Accessories','suunto'); ?></a></li>
+                    </ul>
+                </div>
+
+                <div class="tabs-stage">
+                    <div id="tab-1" class="flex instructions__flex">
+                        <div class="instructions__content">
+                            <p>Выберите часы и воспользуйтесь доступными обновениями ПО и инструкциями</p>
+                        </div>
 
 
-    <section class="blog">
-        <div class="container">
 
+                        <?php
+                        $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+                        $loop = new WP_Query( array(
+                                'post_type'=>'instructions',
+                                'cat'=>'49',
+                                'posts_per_page'=>'2',
+                                'paged'          => $paged )
+                        );
+                        if ( $loop->have_posts() ):
+                            while ( $loop->have_posts() ) : $loop->the_post(); ?>
 
-            <div >
-                <h1>
-                    <?php
-                    $category = get_the_category();
-                    $current_category = $category[0];
-                    $parent_category = $current_category->category_parent;
-                    if ( $parent_category != 0 ) {
-                        echo get_cat_name($parent_category);
-                    }
-                    echo  $current_category->cat_name ;
-                    ?>
-                </h1>
+                                <?php get_template_part( 'template-parts/posttab' );?>
+
+                            <?php endwhile; ?>
+
+                            <div class="pagination instructions__pagination">
+                                <?php pagination_bar( $loop ); ?>
+                            </div>
+                            <?php wp_reset_postdata();
+                        endif; ?>
+
+                    </div>
+                    <div id="tab-2" class="flex instructions__flex">
+                        <?php
+                        $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+                        $loop = new WP_Query( array(
+                                'post_type'=>'instructions',
+                                'cat'=>'50',
+                                'posts_per_page'=>'2',
+                                'paged'          => $paged )
+                        );
+                        if ( $loop->have_posts() ):
+                            while ( $loop->have_posts() ) : $loop->the_post(); ?>
+
+                                <?php get_template_part( 'template-parts/posttab' );?>
+
+                            <?php endwhile; ?>
+
+                            <div class="pagination instructions__pagination">
+                                <?php pagination_bar( $loop ); ?>
+                            </div>
+                            <?php wp_reset_postdata();
+                        endif; ?>
+                    </div>
+                    <div id="tab-3" class="flex instructions__flex">
+                        <?php
+                        $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+                        $loop = new WP_Query( array(
+                                'post_type'=>'instructions',
+                                'cat'=>'51',
+                                'posts_per_page'=>'2',
+                                'paged'          => $paged )
+                        );
+                        if ( $loop->have_posts() ):
+                            while ( $loop->have_posts() ) : $loop->the_post(); ?>
+
+                                <?php get_template_part( 'template-parts/posttab' );?>
+
+                            <?php endwhile; ?>
+
+                            <div class="pagination instructions__pagination">
+                                <?php pagination_bar( $loop ); ?>
+                            </div>
+                            <?php wp_reset_postdata();
+                        endif; ?>
+                    </div>
+                </div>
+
             </div>
-
-
-
-            <div class="blog-category">
-                <ul>
-                    <li><a href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>">Блог</a></li>
-                    <?php
-                    $categories = get_categories(array(
-                        'orderby' => 'name',
-                        'order' => 'ASC'
-                    ));
-                    foreach( $categories as $category ){
-                        echo '<li><a href="' . get_category_link( $category->term_id ) . '" title="' . sprintf( __( "View all posts in %s" ), $category->name ) . '" ' . '>' . $category->name.'</a></li> ';
-                    }
-                    ?>
-                </ul>
-            </div>
-
-            <div class="flex">
-                <?php
-                $paged    = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
-                $cat_name = get_queried_object()->name;
-                $cat_id   = get_cat_ID( $cat_name );
-                $new_loop = new WP_Query( array(
-                        'post_type'      => 'post',
-                        'posts_per_page' => 6,
-                        'tax_query'      => array(
-                            array(
-                                'taxonomy' => 'category',
-                                'field'    => 'id',
-                                'terms'    => $cat_id,
-                            ),
-                        ),
-                        'paged'          => $paged
-                    )
-
-                );
-                if ( $new_loop->have_posts() ): ?>
-
-
-                    <?php
-                    while ( $new_loop->have_posts() ) : $new_loop->the_post(); ?>
-
-                        <?php get_template_part( 'template-parts/postitem' );?>
-
-                    <?php endwhile; ?>
-
-                    <?php wp_reset_postdata();
-                endif; ?>
-
-
-
-
-            </div>
-
-
-            <div  class="pagination">
-                <?php pagination_bar( $new_loop ); ?>
-            </div>
-
-        </div>
-    </section>
-
+        </section>
     </main>
 
 <?php get_footer(); ?>

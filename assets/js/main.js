@@ -478,3 +478,22 @@ jQuery(document).ready(function($){
     });
 });
 
+
+
+jQuery(document).ready(function($){
+
+    // Show the first tab by default
+    $('.instructions__flex').hide();
+    $('.instructions__flex:first').show();
+    $('.tabs-nav li:first').addClass('active');
+
+// Change tab class and display content
+    $('.tabs-nav a').on('click', function(event){
+        event.preventDefault();
+        $('.tabs-nav li').removeClass('active');
+        $(this).parent().addClass('active');
+        $('.instructions__flex').hide();
+        $($(this).attr('href')).show();
+    });
+});
+

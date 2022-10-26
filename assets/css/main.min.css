@@ -1089,6 +1089,7 @@ h3 {
     display: none
   }
 }
+#yith-woocompare .button,
 .button.product_type_variable.add_to_cart_button,
 .button.product_type_simple.add_to_cart_button.ajax_add_to_cart,
 .btn,
@@ -1112,6 +1113,11 @@ h3 {
   align-items: center
 }
 @media screen and (max-width:575.98px) {
+  #yith-woocompare .button,
+  .button.product_type_variable.add_to_cart_button,
+  .button.product_type_simple.add_to_cart_button.ajax_add_to_cart,
+  .btn,
+  .add_to_cart_button,
   .btn {
     height: 40px;
     font-size: 10px;
@@ -1142,7 +1148,7 @@ h3 {
 }
 .header {
   font-weight: 500;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 23px;
   padding: 15px 0 31px;
   position: relative;
@@ -1298,7 +1304,7 @@ h3 {
 }
 .header__phone-list a {
   font-weight: 500;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 140%;
   color: #000
 }
@@ -4818,7 +4824,7 @@ h3 {
     z-index: 99;
     top: 0;
     left: 0;
-    padding: 40px 20px;
+    padding: 105px 20px 40px 20px;
     overflow-y: auto;
     display: none
   }
@@ -4831,7 +4837,13 @@ h3 {
     display: block;
     position: absolute;
     right: 20px;
-    top: 20px
+    top: 70px;
+    width: 20px;
+    height: 20px;
+    z-index: 99999;
+    content: '';
+    background-size: contain;
+    background-image: url(/wp-content/themes/suunto/assets/images/icon/remove-icon.svg);
   }
 }
 .filter__top {

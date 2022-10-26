@@ -15,13 +15,11 @@ get_header(); ?>
 <?php
 $thecontent = get_the_content();
 if(!empty($thecontent)) { ?>
-    <div class="content_page">
-        <div class="content_width">
+    <div class="container">
             <h1 class="content_title"><?php the_title();?></h1>
             <div class="content_text">
                 <?php the_content(); ?>
             </div>
-        </div>
     </div>
 
 <?php } ?>

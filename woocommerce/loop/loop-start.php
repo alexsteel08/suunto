@@ -21,16 +21,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <section class="catalog">
     <div class="">
-
-
         <div class="flex-row">
             <div class="col-3">
+                <div class="filter">
+                    <div class="close-filter"></div>
 
-
-                <?php dynamic_sidebar( 'shop' ); ?>
-
-
+                    <div class="product_tags_block"></div>
+                    <?php dynamic_sidebar( 'shop' ); ?>
+                </div>
             </div>
             <div class="col-9">
-
+                <div class="filter-btn-flex">
+                    <div class="filter-btn">
+                        <?php echo __('Filter', 'suunto'); ?>
+                        <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/icon/filter-icon.png" alt="">
+                    </div>
+                </div>
                 <ul class="products columns-<?php echo esc_attr( wc_get_loop_prop( 'columns' ) ); ?>">

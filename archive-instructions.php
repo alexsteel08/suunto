@@ -25,31 +25,59 @@ get_header(); ?>
                 <div class="tabs-stage">
                     <div id="tab-1" class="flex instructions__flex">
                         <div class="instructions__content">
-                            <p>Выберите часы и воспользуйтесь доступными обновениями ПО и инструкциями</p>
+                            <p><?php _e('Select your watch and access available software updates and instructions','suunto'); ?></p>
                         </div>
 
+                        <?php if(ICL_LANGUAGE_CODE=='uk'): ?>
 
 
-                        <?php
-                        $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
-                        $loop = new WP_Query( array(
-                                'post_type'=>'instructions',
-                                'cat'=>'49',
-                                'posts_per_page'=>'2',
-                                'paged'          => $paged )
-                        );
-                        if ( $loop->have_posts() ):
-                            while ( $loop->have_posts() ) : $loop->the_post(); ?>
+                            <?php
+                            $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+                            $loop = new WP_Query( array(
+                                    'post_type'=>'instructions',
+                                    'cat'=>'49',
+                                    'posts_per_page'=>'12',
+                                    'paged'          => $paged )
+                            );
+                            if ( $loop->have_posts() ):
+                                while ( $loop->have_posts() ) : $loop->the_post(); ?>
 
-                                <?php get_template_part( 'template-parts/posttab' );?>
+                                    <?php get_template_part( 'template-parts/posttab' );?>
 
-                            <?php endwhile; ?>
+                                <?php endwhile; ?>
 
-                            <div class="pagination instructions__pagination">
-                                <?php pagination_bar( $loop ); ?>
-                            </div>
-                            <?php wp_reset_postdata();
-                        endif; ?>
+                                <div class="pagination instructions__pagination">
+                                    <?php pagination_bar( $loop ); ?>
+                                </div>
+                                <?php wp_reset_postdata();
+                            endif; ?>
+                        <?php elseif(ICL_LANGUAGE_CODE=='ru'): ?>
+
+                            <?php
+                            $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+                            $loop = new WP_Query( array(
+                                    'post_type'=>'instructions',
+                                    'cat'=>'54',
+                                    'posts_per_page'=>'12',
+                                    'paged'          => $paged )
+                            );
+                            if ( $loop->have_posts() ):
+                                while ( $loop->have_posts() ) : $loop->the_post(); ?>
+
+                                    <?php get_template_part( 'template-parts/posttab' );?>
+
+                                <?php endwhile; ?>
+
+                                <div class="pagination instructions__pagination">
+                                    <?php pagination_bar( $loop ); ?>
+                                </div>
+                                <?php wp_reset_postdata();
+                            endif; ?>
+                        <?php endif; ?>
+
+
+
+
 
                     </div>
                     <div id="tab-2" class="flex instructions__flex">
@@ -58,7 +86,7 @@ get_header(); ?>
                         $loop = new WP_Query( array(
                                 'post_type'=>'instructions',
                                 'cat'=>'50',
-                                'posts_per_page'=>'2',
+                                'posts_per_page'=>'12',
                                 'paged'          => $paged )
                         );
                         if ( $loop->have_posts() ):
@@ -80,7 +108,7 @@ get_header(); ?>
                         $loop = new WP_Query( array(
                                 'post_type'=>'instructions',
                                 'cat'=>'51',
-                                'posts_per_page'=>'2',
+                                'posts_per_page'=>'12',
                                 'paged'          => $paged )
                         );
                         if ( $loop->have_posts() ):

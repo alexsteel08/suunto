@@ -345,7 +345,7 @@ function woocommerce_before_shop_loop_baner()
             <?php
             $terms = get_field('filter_terms', 'option');
             if ($terms): ?>
-                <div class="filter__top">
+                <div class="filter__top" data-da="widget-woof,0,600">
                     <?php foreach ($terms as $term): ?>
                         <div class="filter__tag-flex">
                             <span><?php echo esc_html($term->name); ?></span>
@@ -373,3 +373,20 @@ function woocommerce_before_shop_loop_baner()
 
 
 <?php }
+
+
+
+add_filter('option_wpseo_titles', function ( $values ){
+
+    if (is_admin() || !isset($values['breadcrumbs-home'])) {
+        return $values;
+    }
+
+    $current_lang = apply_filters( 'wpml_current_language', NULL );
+
+    if ($current_lang == 'ru') {
+        $values['breadcrumbs-home'] = 'Главная';
+    }
+
+    return $values;
+});

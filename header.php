@@ -13,8 +13,10 @@
     <div class="container">
         <div class="flex">
             <div class="logo">
-                <a href="/">
-                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/logo.svg" alt="">
+                <a href="<?php echo get_home_url(); ?>">
+                    <?php if( get_field('logo','option') ): ?>
+                        <img itemprop="logo" src="<?php the_field('logo','option'); ?>" />
+                    <?php endif; ?>
                 </a>
             </div>
             <div class="header__flex">
@@ -110,15 +112,15 @@
                     <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/icon/cart.svg" alt="">
                     <span class="quantity"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
                 </a>
-
-                <div class="header__lang">
-                    <span>RU</span>
-                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/icon/lang-arrow.svg" alt="">
-                    <ul>
-                        <li><a href="">EN</a></li>
-                        <li><a href="">DE</a></li>
-                    </ul>
-                </div>
+                <?php echo do_shortcode('[wpml_language_selector_widget]');?>
+<!--                <div class="header__lang">-->
+<!--                    <span>RU</span>-->
+<!--                    <img src="--><?php //echo esc_url(get_template_directory_uri()); ?><!--/assets/images/icon/lang-arrow.svg" alt="">-->
+<!--                    <ul>-->
+<!--                        <li><a href="">EN</a></li>-->
+<!--                        <li><a href="">DE</a></li>-->
+<!--                    </ul>-->
+<!--                </div>-->
                 <div class="btn-menu">
                     <div class="burger"></div>
                 </div>

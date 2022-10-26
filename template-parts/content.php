@@ -21,6 +21,21 @@
             <?php get_template_part( 'template-parts/blocks/news' );?>
         <?php endif; ?>
 
+        <?php if( get_row_layout() == 'recently_viewed_products' ): ?>
+            <?php get_template_part( 'template-parts/blocks/recently_viewed_product' );?>
+        <?php endif; ?>
+
+        <?php if( get_row_layout() == 'title_text' ): ?>
+            <?php get_template_part( 'template-parts/blocks/title_text' );?>
+        <?php endif; ?>
+
+        <?php if( get_row_layout() == 'contacts' ): ?>
+            <?php get_template_part( 'template-parts/blocks/contacts' );?>
+        <?php endif; ?>
+
+        <?php if( get_row_layout() == 'maps' ): ?>
+            <?php get_template_part( 'template-parts/blocks/maps' );?>
+        <?php endif; ?>
 
 
 

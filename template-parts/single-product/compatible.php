@@ -1,6 +1,6 @@
 
 <?php
-$compatible_products = get_field('compatible_products');
+$compatible_products = get_field('compatible_products_list');
 if( $compatible_products ): ?>
     <section class="compatible">
     <div class="compatible__heading">

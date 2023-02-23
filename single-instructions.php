@@ -19,10 +19,10 @@ get_header(); ?>
                    </div>
                 <?php endif; ?>
 
-                <div class="search">
-                    <input type="search" placeholder="Пошук">
-                    <button><img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/icon/search-icon.svg" alt=""></button>
-                </div>
+<!--                <div class="search">-->
+<!--                    <input type="search" placeholder="Пошук">-->
+<!--                    <button><img src="--><?php //echo esc_url(get_template_directory_uri()); ?><!--/assets/images/icon/search-icon.svg" alt=""></button>-->
+<!--                </div>-->
                 <?php if( have_rows('instructions_steps') ): ?>
                     <div class="flex update__flex">
                         <?php while( have_rows('instructions_steps') ): the_row();  $image = get_sub_field('image'); ?>
@@ -177,9 +177,11 @@ get_header(); ?>
         <?php $featured_posts = get_field('supports_post_list'); if( $featured_posts ): ?>
                 <section class="popular">
                     <div class="container">
-                        <div class="popular__heading">
-                            <h2>Популярные темы поддержки</h2>
-                        </div>
+                        <?php if( get_field('supports_post_title') ): ?>
+                            <div class="popular__heading">
+                                <h2><?php the_field('supports_post_title'); ?></h2>
+                            </div>
+                        <?php endif; ?>
                         <div class="flex popular__flex">
                         <?php foreach( $featured_posts as $post ): setup_postdata($post); ?>
                             <div class="col popular__col">
@@ -204,11 +206,11 @@ get_header(); ?>
         <?php if( have_rows('global_social_link','option') ): ?>
         <section class="social-networks">
             <div class="container">
-                <?php if( get_field('social_link_title','option') ): ?>
+
                     <div class="social-networks__heading">
-                        <h2><?php the_field('social_link_title','option'); ?></h2>
+                        <h2><?php echo __('We are on social networks', 'suunto'); ?></h2>
                     </div>
-                <?php endif; ?>
+
 
                 <div class="social-networks__social-net">
                     <ul>

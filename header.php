@@ -96,13 +96,13 @@
                 <?php dynamic_sidebar( 'compare' ); ?>
 
                 <?php if ( is_user_logged_in() ) { ?>
-                    <a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" class="header__login" title="<?php _e('My Account','suunto'); ?>">
+                    <a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" class="header__login" title="<?php _e('My Account','suunto'); ?>" data-da="header__menu,2,992">
                         <span><?php _e('My Account','suunto'); ?></span>
                         <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/icon/account-circle.svg" alt="">
                     </a>
                 <?php }
                 else { ?>
-                    <a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" class="header__login" title="<?php _e('Login / Register','suunto'); ?>">
+                    <a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" class="header__login" title="<?php _e('Login / Register','suunto'); ?>" data-da="header__menu,2,992">
                         <span><?php _e('Login','suunto'); ?></span>
                         <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/icon/account-circle.svg" alt="">
                     </a>

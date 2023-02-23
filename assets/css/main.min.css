@@ -1093,6 +1093,8 @@ h3 {
 .button.product_type_variable.add_to_cart_button,
 .button.product_type_simple.add_to_cart_button.ajax_add_to_cart,
 .btn,
+.checkout-button.button.alt.wc-forward,
+.woocommerce #payment #place_order, .woocommerce-page #payment #place_order,
 .add_to_cart_button {
   height: 60px;
   padding: 10px 50px;
@@ -1118,6 +1120,8 @@ h3 {
   .button.product_type_simple.add_to_cart_button.ajax_add_to_cart,
   .btn,
   .add_to_cart_button,
+  .checkout-button.button.alt.wc-forward,
+  .woocommerce #payment #place_order, .woocommerce-page #payment #place_order,
   .btn {
     height: 40px;
     font-size: 10px;
@@ -1125,6 +1129,8 @@ h3 {
     padding: 10px 37px
   }
 }
+.woocommerce #payment #place_order:hover, .woocommerce-page #payment #place_order:hover,
+.checkout-button.button.alt.wc-forward:hover,
 .btn:hover {
   background: #f03241;
   color: #fff
@@ -1144,22 +1150,29 @@ h3 {
   visibility: visible
 }
 .main {
-  overflow: hidden
+  overflow: hidden;
+}
+.home .main {
+  padding-top: 130px;
 }
 .header {
   font-weight: 500;
   font-size: 15px;
   line-height: 23px;
   padding: 15px 0 31px;
-  position: relative;
+  position: fixed;
   z-index: 999;
-  background: #fff
+  background: #fff;
+  width: 100%;
 }
 @media screen and (max-width:767.98px) {
   .header {
     padding: 9px 0 14px;
     font-size: 12px;
     line-height: 17px
+  }
+  .home .main {
+    padding-top: 75px;
   }
 }
 .header__flex {
@@ -1578,7 +1591,7 @@ h3 {
 }
 .breadcrums {
   background: #f4f4f4;
-  padding: 12px 0 7px
+  padding: 140px 0 7px;
 }
 .breadcrums ul {
   display: -webkit-box;
@@ -4682,32 +4695,37 @@ h3 {
     margin-top: 15px
   }
 }
-.catalog .filter-btn-flex {
+.filter-btn-flex {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: end;
   -ms-flex-pack: end;
-  justify-content: flex-end;
-  margin-bottom: 20px
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-top: 10px;
 }
-.catalog .filter-btn {
-  padding: 0 12px 0 10px;
+.filter-btn {
+  padding: 5px 12px 0 10px;
   height: 30px;
   border: 1px solid #030101;
   border-radius: 3px;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
-  display: inline-flex;
+  display: flex;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
   margin-left: auto;
   font-weight: 600;
   font-size: 12px;
-  line-height: 17px
+  line-height: 17px;
+
+  justify-content: center;
+  width: 100%;
+  text-align: center;
 }
-.catalog .filter-btn img {
+.filter-btn img {
   width: 16px;
   margin-left: 2px
 }
@@ -4822,18 +4840,18 @@ h3 {
     height: 100%;
     background: #fff;
     z-index: 99;
-    top: 0;
+    top: 50px;
     left: 0;
     padding: 105px 20px 40px 20px;
     overflow-y: auto;
     display: none
   }
 }
-.filter .close-filter {
+.close-filter {
   display: none
 }
 @media screen and (max-width:991.98px) {
-  .filter .close-filter {
+  .close-filter {
     display: block;
     position: absolute;
     right: 20px;

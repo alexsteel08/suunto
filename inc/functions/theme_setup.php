@@ -49,7 +49,7 @@ function a_theme_widgets_init()
     register_sidebar(array(
         'name' => 'Compare',
         'id' => 'compare',
-        'before_widget' => '<div>',
+        'before_widget' => '<div class="header__compare">',
         'after_widget' => '</div>',
         'before_title' => '<div class="rounded">',
         'after_title' => '</div>',

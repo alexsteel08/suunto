@@ -29,12 +29,12 @@ remove_action('woocommerce_sidebar', 'woocommerce_get_sidebar', 10);
 /**
  * @desc Remove in all product type
  */
-function wc_remove_all_quantity_fields($return, $product)
-{
-    return true;
-}
-
-add_filter('woocommerce_is_sold_individually', 'wc_remove_all_quantity_fields', 10, 2);
+//function wc_remove_all_quantity_fields($return, $product)
+//{
+//    return true;
+//}
+//
+//add_filter('woocommerce_is_sold_individually', 'wc_remove_all_quantity_fields', 10, 2);
 
 //result count
 
@@ -82,6 +82,7 @@ function remove_company_name($fields)
     unset($fields['billing']['billing_city']);
     unset($fields['billing']['billing_address_1']);
     unset($fields['billing']['billing_address_2']);
+    unset($fields['billing']['billing_email']);
     return $fields;
 
 }
@@ -135,7 +136,7 @@ remove_action('woocommerce_single_product_summary', 'woocommerce_template_single
  * @snippet       Remove "Default Sorting" Dropdown @ WooCommerce Shop & Archive Pages
  */
 
-remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
+//remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
 //add parrent category before title and clor tags
 remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_title', 5);
 function woocommerce_add_custom_text_before_product_title()
@@ -338,38 +339,44 @@ add_action('woocommerce_before_shop_loop', 'woocommerce_before_shop_loop_baner',
 function woocommerce_before_shop_loop_baner()
 { ?>
     <div class="catalog_baner">
-    <div class="flex-row">
-        <div class="col-3">
+        <div class="flex-row">
+                <div class="col-3">
 
 
-            <?php
-            $terms = get_field('filter_terms', 'option');
-            if ($terms): ?>
-                <div class="filter__top" data-da="widget-woof,0,600">
-                    <?php foreach ($terms as $term): ?>
-                        <div class="filter__tag-flex">
-                            <span><?php echo esc_html($term->name); ?></span>
-                            <a style="background-color: <?php echo get_field('tag_color', $term); ?>"
-                                    href="<?php echo esc_url(get_term_link($term)); ?>"><?php echo esc_html($term->name); ?></a>
+                    <?php
+                    $terms = get_field('filter_terms', 'option');
+                    if ($terms): ?>
+                        <div class="filter__top" >
+                            <?php foreach ($terms as $term): ?>
+                                <div class="filter__tag-flex">
+                                    <span><?php echo esc_html($term->name); ?></span>
+                                    <a style="background-color: <?php echo get_field('tag_color', $term); ?>"
+                                            href="<?php echo esc_url(get_term_link($term)); ?>"><?php echo esc_html($term->name); ?></a>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
-                    <?php endforeach; ?>
+                    <?php endif; ?>
                 </div>
-            <?php endif; ?>
-        </div>
 
-            <div class="col-9">
-                <?php if( get_field('shop_baner_image','option') || get_field('link_baner','option') ): ?>
-                    <div class="banner-block">
-                        <a href="<?php the_field('link_baner','option'); ?>">
-                            <img src="<?php the_field('shop_baner_image','option'); ?>" alt="">
-                        </a>
-                    </div>
-
-                <?php endif; ?>
-
+                <div class="col-9">
+                    <?php if( get_field('shop_baner_image','option') || get_field('link_baner','option') ): ?>
+                        <div class="banner-block banner-block_descktop">
+                            <a href="<?php the_field('link_baner','option'); ?>">
+                                <img src="<?php the_field('shop_baner_image','option'); ?>" alt="">
+                            </a>
+                        </div>
+                    <?php endif; ?>
+                    <?php if( get_field('shop_baner_image_mob','option') || get_field('link_baner','option') ): ?>
+                        <div class="banner-block banner-block_mobile">
+                            <a href="<?php the_field('link_baner','option'); ?>">
+                                <img src="<?php the_field('shop_baner_image_mob','option'); ?>" alt="">
+                            </a>
+                        </div>
+                    <?php endif; ?>
+                </div>
             </div>
-        </div>
     </div>
+
 
 
 <?php }

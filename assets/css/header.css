@@ -10,7 +10,14 @@ body.admin-bar .navbar-fixed-top {
 .logged-in > .wr header:before {
     margin-top: 32px;
 }
-
+.header {
+    transition: all 0.2s ease-in-out;
+}
+.header.header_shadow {
+    background: #ffffff;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%);
+}
 /*breadcrumbs*/
 #breadcrumbs {
     text-align: left;
@@ -51,18 +58,24 @@ body.admin-bar .navbar-fixed-top {
     align-items: flex-start !important;
     position: absolute;
     background: #ffffff;
-    padding: 0 5px 5px 5px;
+    padding: 15px 10px 15px 10px;
     border: 1px solid #ececec;
     border-radius: 5px;
     box-shadow: 0 5px 20px rgb(0 0 0 / 20%);
     z-index: 1;
 }
+
 .menu-item-has-children:hover .menu__sub-list {
-
-
     opacity: 1;
     visibility: visible;
     height: auto;
+    transition: .3s ease-in-out;
+}
+.menu__list .menu-item-has-children .menu-item-has-children ul.menu__sub-list {
+    position: relative;
+    box-shadow: none;
+    border: none;
+    padding: 5px 10px 15px 10px;
 }
 body._lock {
     overflow: hidden;
@@ -98,5 +111,35 @@ body._lock {
         width: 40px;
         margin-left: 5px;
     }
+    .breadcrums {
+        background: #f4f4f4;
+        padding: 85px 0 7px !important;
+    }
+    .menu_expand {
+        overflow: visible !important;
+    }
+    .menu_expand::before {
+        opacity: 0 !important;
+        z-index: -1 !important;
+        visibility: hidden !important;
+    }
+    .filter.menu_expand {
+        overflow-y: auto !important;
+    }
 
+    .menu-item-has-children .menu__sub-list,
+    .menu__list .menu-item-has-children .menu-item-has-children ul.menu__sub-list {
+        opacity: 1;
+        visibility: visible;
+        height: auto;
+        position: relative;
+        box-shadow: none;
+        border: none;
+    }
+    .menu__list .menu-item-has-children .menu-item-has-children ul.menu__sub-list {
+        padding: 15px 10px 15px 10px;
+    }
+    .header__menu {
+        overflow: auto;
+    }
 }

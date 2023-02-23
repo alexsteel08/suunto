@@ -4,6 +4,32 @@ jQuery(document).ready(function($){
        $('body').toggleClass('_lock');
     });
 });
+jQuery(document).ready(function($){
+    $('.filter-btn').click(function(event) {
+       $('.filter').addClass('menu_expand');
+        $('.filter-btn').addClass('menu_expand');
+        $('.close-filter').show();
+
+
+
+    });
+
+});
+
+jQuery(document).ready(function($){
+    $(document).ready(function() {
+        $('select').niceSelect();
+    });
+});
+
+jQuery(document).ready(function($){
+
+    $('.close-filter').on('click', function(event){
+        $('.filter').removeClass('menu_expand');
+        $('.close-filter').hide();
+
+    });
+});
 
 jQuery(document).ready(function($){
     $('.filter_prod_img').click(function(event) {
@@ -40,10 +66,10 @@ jQuery(function($){
         var height = $(window).scrollTop();
         /*Если сделали скролл на 100px задаём новый класс для header*/
         if(height > 20){
-            $('header').addClass('header_shadow');
+            $('.header').addClass('header_shadow');
         } else{
             /*Если меньше 100px удаляем класс для header*/
-            $('header').removeClass('header_shadow');
+            $('.header').removeClass('header_shadow');
         }
     });
 });

@@ -16,7 +16,7 @@
                     <?php if( have_rows('social_link','option') ): ?>
                         <ul class="social">
                             <?php while( have_rows('social_link','option') ): the_row();  $image = get_sub_field('logo'); ?>
-                                <li><a href="<?php the_sub_field('link'); ?>"><img class="svg-image" src="<?php echo $image; ?>" alt="socila icon"></a></li>
+                                <li><a href="<?php the_sub_field('link'); ?>" target="_blank"><img class="svg-image" src="<?php echo $image; ?>" alt="socila icon"></a></li>
                             <?php endwhile; ?>
                         </ul>
                     <?php endif; ?>

@@ -52,10 +52,12 @@ if ($featured_posts): ?>
                             <?php endif; ?>
                             <!--                                    <button class="book-btn"><img class="svg-image" src="img/dist/icon/compare-icon.svg" alt=""></button>-->
                             <div class="image product__image object-fit">
-                                <img src="<?php echo $product_img_url; ?>" alt="">
+                                <a href="<?php echo $permalink; ?>">
+                                    <img src="<?php echo $product_img_url; ?>" alt="">
+                                </a>
                             </div>
                             <div class="product__desc">
-                                <h3><?php echo esc_html($title); ?></h3>
+                                <a href="<?php echo $permalink; ?>"><h3><?php echo esc_html($title); ?></h3></a>
                                 <p><?php echo $product_subtitle; ?></p>
                                 <div class="product__price-inner">
                                     <?php
@@ -116,6 +118,7 @@ if ($featured_posts): ?>
 
 
                     <div class="col">
+                        <a href="<?php echo $permalink; ?>">
                         <div class="product__block">
                             <?php
                             if ($terms): ?>
@@ -168,6 +171,7 @@ if ($featured_posts): ?>
                                 <?php do_action('woocommerce_after_shop_loop_item'); ?>
                             </div>
                         </div>
+                        </a>
                     </div>
                 <?php endforeach; ?>
             </div>

@@ -44,6 +44,15 @@ switch ( $template ) {
 		echo '<div id="primary" class="content-area twentysixteen"><main id="main" class="site-main" role="main">';
 		break;
 	default:
-		echo '<div id="primary" class="container content-area"><main id="main" class="site-main" role="main">';
+		echo '<div id="primary" class="container test content-area"><main id="main" class="site-main" role="main">'; ?>
+
+        <div class="filter-btn-flex">
+            <div class="filter-btn">
+                <?php echo __('Filter', 'suunto'); ?>
+                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/icon/filter-icon.png" alt="">
+            </div>
+        </div>
+<?php
+
 		break;
 }

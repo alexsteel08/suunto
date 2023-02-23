@@ -1,12 +1,16 @@
-<section class="video product-video">
-        <div class="video__heading">
-            <h2>Видеоролики</h2>
-        </div>
+
 
 
             <?php
             $featured_posts = get_field('videos_items');
             if( $featured_posts ): ?>
+            <section class="video product-video">
+                <?php if( get_field('videos_title') ): ?>
+                    <div class="video__heading">
+                        <h2><?php the_field('videos_title'); ?></h2>
+                    </div>
+                <?php endif; ?>
+
         <div class="flex video__flex">
                     <?php foreach( $featured_posts as $featured_post ):
                         $permalink = get_permalink( $featured_post->ID );
@@ -33,10 +37,11 @@
                         </div>
                     <?php endforeach; ?>
                 </div>
-            <?php endif; ?>
-        </div>
+                </div>
 
-</section>
+            </section>
+            <?php endif; ?>
+
 
 <!-- video modal -->
 <section class="video-modal">
